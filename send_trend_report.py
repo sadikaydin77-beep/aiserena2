@@ -20,8 +20,10 @@ Reply in English. Keep it short and scannable, structured exactly like this:
 💎 PRODUCT SUGGESTION
 (One concrete product suggestion: type, stone/material, style - 2-3 sentences, explain why it fits today)
 
-Do not include hashtags, captions, or any social media copy - only the trend
-summary and product suggestion."""
+🎨 GEMINI IMAGE PROMPT
+(A single ready-to-use image generation prompt, 40-80 words, that I can paste directly into Gemini to generate a photorealistic product photo of this exact piece. Include: the specific jewelry item, materials/stones/colors, camera/lens style, lighting, background/surface, and explicitly state ONE single jewelry piece only, no people, no hands, no multiple items, photorealistic, ultra-detailed, 8K product photography. Write it as one continuous paragraph, no line breaks.)
+
+Do not include hashtags or social media captions - only these three sections."""
 
 
 def get_report():
