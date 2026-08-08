@@ -36,7 +36,7 @@ def get_report():
         },
         json={
             "model": "claude-sonnet-5",
-            "max_tokens": 800,
+            "max_tokens": 2000,
             "messages": [{"role": "user", "content": PROMPT}],
             "tools": [{"type": "web_search_20250305", "name": "web_search"}],
         },
