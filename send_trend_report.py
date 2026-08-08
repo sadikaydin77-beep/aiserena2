@@ -33,7 +33,7 @@ def get_report():
             "content-type": "application/json",
         },
         json={
-            "model": "model": "claude-sonnet-5",
+            "model": "claude-sonnet-5",
             "max_tokens": 800,
             "messages": [{"role": "user", "content": PROMPT}],
             "tools": [{"type": "web_search_20250305", "name": "web_search"}],
