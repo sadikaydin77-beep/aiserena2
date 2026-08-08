@@ -50,14 +50,33 @@ def get_report():
     return "\n".join(text_parts).strip()
 
 
-def send_telegram(text):
+def send_telegram_message(text, parse_mode=None):
+    payload = {"chat_id": TELEGRAM_CHAT_ID, "text": text}
+    if parse_mode:
+        payload["parse_mode"] = parse_mode
     r = requests.post(
         f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
-        json={"chat_id": TELEGRAM_CHAT_ID, "text": f"🗓️ Daily AiSerena Trend Report\n\n{text}"},
+        json=payload,
     )
     print(f"Telegram response: {r.status_code} - {r.text}")
 
 
+def send_report(report_text):
+    marker = "🎨 GEMINI IMAGE PROMPT"
+    if marker in report_text:
+        summary_part, prompt_part = report_text.split(marker, 1)
+        prompt_part = prompt_part.strip()
+    else:
+        summary_part = report_text
+        prompt_part = None
+
+    send_telegram_message(f"🗓️ Daily AiSerena Trend Report\n\n{summary_part.strip()}")
+
+    if prompt_part:
+        # Sent as a separate message, wrapped in a code block for easy one-tap copy.
+        send_telegram_message(f"🎨 Gemini Image Prompt (tap to copy):\n\n`{prompt_part}`", parse_mode="Markdown")
+
+
 if __name__ == "__main__":
     report = get_report()
-    send_telegram(report)
+    send_report(report)
